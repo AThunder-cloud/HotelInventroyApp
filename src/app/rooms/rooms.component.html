@@ -1,0 +1,33 @@
+<!-- <h1>Welcome to {{hotelName}}</h1> -->
+<app-header></app-header>
+<!-- <app-header></app-header>
+<app-header></app-header>
+<app-header></app-header> -->
+<!-- this is called interpolation getting the value from ts file into html -->
+
+<!-- {{rooms$ | async | json}}  -->
+<!-- async pipe will auto matically unsubcribe to the stream -->
+<div [hidden]="hideRooms">
+    Number of rooms:<h5 [innerText]="numberOfRooms"></h5></div>
+<!-- this is called  property binding -->
+ <h1>
+    {{getError$ | async}}
+    Number of rooms : {{roomsCount$ | async}}
+ </h1>
+
+
+<div *ngIf="rooms$ | async as rooms" >
+    <app-rooms-list [rooms]="rooms" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+<div>
+    <button class="btn btn-dark" (click)="addRoom()">Add Room</button>
+    <button class="btn btn-danger" (click)="toggle()">Toggle</button>
+    <!-- this is called event binding -->
+    <button class="btn btn-danger" (click)="editRoom()">Edit Room</button>
+    <button class="btn btn-danger" (click)="deleteRoom()">Delete Room</button>
+</div>
+</div>
+<div *ngIf="selectedRoom" class="b">
+    <h3>Slected Room : {{selectedRoom.roomType}}</h3> 
+</div>
+
+<!-- <h1>{{totalByes}}</h1>Loaded -->
